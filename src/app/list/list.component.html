@@ -1,1 +1,7 @@
-<p>list works!</p>
+<p>Choose your brew:</p>
+
+<ul *ngIf='breweries'>
+    <li *ngFor='let brew of breweries'>
+        <p class="name"> {{brew.name}}</p>
+    </li>
+</ul>

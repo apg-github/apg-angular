@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FetchService } from '../fetch.service'
 
 @Component({
   selector: 'app-list',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListComponent implements OnInit {
 
-  constructor() { }
+  constructor(private _fetch: FetchService) { }
 
-  ngOnInit(): void {
+  breweries: Object;
+
+  async ngOnInit(): Promise<void> {
+    (await this._fetch.fetchBeers()).subscribe(data => {
+    this.breweries = data
+    console.log(this.breweries)
+    })
   }
 
 }
